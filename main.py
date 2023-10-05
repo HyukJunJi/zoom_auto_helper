@@ -12,8 +12,9 @@ ImageGrab.grab = partial(ImageGrab.grab, all_screens=True)
 __PIL_TUPLE_VERSION = tuple(int(x) for x in PIL.__version__.split("."))
 pyscreeze.PIL__version__ = __PIL_TUPLE_VERSION
 
-mouse = (138, 1286) # 스크린 x, y 좌표
-
+mouse = (130, 1043) # 스크린 x, y 좌표
+#-943, 1610
+#130,1043
 
 def click_video():
     print(f'{datetime.now().strftime("%H:%M:%S")} 비디오 ON/OFF 클릭 완료')
@@ -32,8 +33,10 @@ def test():
 if __name__ == '__main__':
     schedule.every().hour.at(f'50:{get_secs()}').do(click_video)
     schedule.every().hour.at(f'00:{get_secs()}').do(click_video)
-
+    
     while True:
+        #print(pyautogui.position())
+        #time.sleep(1)
         dt = datetime.now()
         h = dt.hour
         if h == 12:
