@@ -9,6 +9,7 @@ from functools import partial
 from datetime import datetime
 
 ImageGrab.grab = partial(ImageGrab.grab, all_screens=True)
+
 __PIL_TUPLE_VERSION = tuple(int(x) for x in PIL.__version__.split("."))
 pyscreeze.PIL__version__ = __PIL_TUPLE_VERSION
 
@@ -31,6 +32,8 @@ def test():
     pass
 
 if __name__ == '__main__':
+    ImageGrab.grab = partial(ImageGrab.grab, all_screens=True)
+    print('실행되었습니다.')
     schedule.every().hour.at(f'50:{get_secs()}').do(click_video)
     schedule.every().hour.at(f'00:{get_secs()}').do(click_video)
     
@@ -39,7 +42,7 @@ if __name__ == '__main__':
         #time.sleep(1)
         dt = datetime.now()
         h = dt.hour
-        if h == 12:
-            time.sleep(1)
+        if h == 12 or h == 8 or h >= 17:
+            time.sleep(10)
             continue
         pending()
